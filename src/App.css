@@ -1,0 +1,47 @@
+/* 1. Fondo Global: Lila sutil */
+body {
+  background-color: #f3e5f5 !important; 
+  /* Un gris azulado muy oscuro, mucho más suave que el negro */
+  color: #2f3640 !important; 
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  color: #4a148c !important; 
+}
+
+p, span, label {
+  /* Gris suave para textos largos, reduce el esfuerzo de lectura */
+  color: #4b4b4b !important; 
+}
+
+/* ESTILO DEL BOTÓN: Forzado para que sea visible siempre */
+button {
+  background-color: #9575cd !important; 
+  color: #880ad5 !important;        
+  padding: 12px 20px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  font-size: 1rem !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+  
+  /* Esto asegura que no herede transparencias */
+  display: inline-block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Efecto hover: solo para dar un toque visual al tocarlo */
+button:hover {
+  background-color: #7e57c2 !important; /* Morado un poco más oscuro */
+  color: #c496f1 !important;          
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
+}
+
+/* 4. Las Cards */
+[style*="border"] {
+  background-color: #f0cef2 !important;
+  box-shadow: 0 4px 15px rgba(106, 27, 154, 0.1) !important;
+}
