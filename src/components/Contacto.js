@@ -20,95 +20,76 @@ const Contacto = () => {
   };
 
   return (
-    <div style={{ padding: '20px', marginBottom: '80px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>📧 Contáctanos</h1>
+    <div className="p-8 mb-20 min-h-screen bg-purple-50">
+      <h1 className="text-4xl font-extrabold text-purple-900 text-center mb-10">
+        📧 Contáctanos
+      </h1>
       
-      <div style={styles.contentContainer}>
+      {/* CONTENEDOR PRINCIPAL: Flexbox responsivo con Tailwind */}
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-12 max-w-6xl mx-auto">
+        
         {/* COLUMNA IZQUIERDA: Formulario */}
-        <div style={styles.formColumn}>
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <input 
-              type="text" 
-              placeholder="Tu nombre (Nombre y Apellido)" 
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              style={styles.input} 
-            />
-            <input 
-              type="email" 
-              placeholder="Tu correo electrónico (contacto@sekhmet.cl)" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={styles.input} 
-            />
-            <textarea 
-              placeholder="¿En qué vehículo estás interesado?" 
-              style={{ ...styles.input, height: '100px' }} 
-            ></textarea>
+        <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl border border-purple-100">
+          <form className="flex flex-col gap-5">
+            <div>
+              <label className="block text-sm font-semibold text-purple-700 mb-1 ml-1">Tu nombre:</label>
+              <input 
+                type="text" 
+                placeholder="Nombre y Apellido" 
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                className="w-full p-3 bg-purple-50 border-2 border-purple-100 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-purple-700 mb-1 ml-1">Tu correo:</label>
+              <input 
+                type="email" 
+                placeholder="contacto@sekhmet.cl" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 bg-purple-50 border-2 border-purple-100 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-purple-700 mb-1 ml-1">Mensaje:</label>
+              <textarea 
+                placeholder="¿En qué vehículo estás interesado?" 
+                className="w-full p-3 bg-purple-50 border-2 border-purple-100 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all h-32 resize-none"
+              ></textarea>
+            </div>
+
             <button 
               type="button" 
               onClick={manejarEnvio} 
-              style={styles.button}
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 rounded-xl shadow-lg transform hover:-translate-y-1 transition-all active:scale-95"
             >
               Enviar Consulta
             </button>
           </form>
         </div>
 
-        {/* COLUMNA DERECHA:foto profesional */}
-        <div style={styles.imageColumn}>
-          <img 
-            src="/assets/imagenes/yoContacto.png"
-            alt="Lilian Zapata - Soporte Automotora Sekhmet" 
-            style={styles.profileImage} 
-          />
-          <p style={styles.imageLabel}>Tu ejecutiva de confianza</p>
+        {/* COLUMNA DERECHA: Foto profesional */}
+        <div className="w-full max-w-lg text-center flex flex-col items-center">
+          <div className="relative group">
+            <img 
+              src="/assets/imagenes/yoContacto.png"
+              alt="Lilian Zapata - Soporte Automotora Sekhmet" 
+              className="rounded-3xl shadow-2xl border-4 border-white transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 rounded-3xl bg-purple-900 opacity-0 group-hover:opacity-10 transition-opacity"></div>
+          </div>
+          <p className="mt-4 text-purple-600 italic font-medium text-lg">
+            Tu ejecutiva de confianza
+          </p>
+          <div className="mt-2 h-1 w-20 bg-pink-500 rounded-full"></div>
         </div>
+
       </div>
     </div>
   );
 };
 
-
-const styles = {
-  contentContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center', 
-    alignItems: 'center',
-    gap: '50px',              
-    marginTop: '30px',
-    flexWrap: 'wrap'
-  },
-  formColumn: {
-    flex: '1',
-    minWidth: '300px',
-    maxWidth: '450px'         
-  },
-  imageColumn: {
-    flex: '1.5',             
-    minWidth: '350px',
-    textAlign: 'center',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-  profileImage: {
-    width: '100%',            
-    maxWidth: '550px',        
-    height: 'auto', 
-    borderRadius: '20px',    
-    boxShadow: '0 12px 24px rgba(0,0,0,0.2)' 
-  },
-  imageLabel: {
-    marginTop: '15px', 
-    color: '#7f8c8d', 
-    fontStyle: 'italic',
-    fontSize: '1rem',         
-    fontWeight: '500'
-  },
-
-  input: { padding: '12px', borderRadius: '8px', border: '1px solid #ccc', fontSize: '1rem' },
-  button: { background: '#e91e63', color: 'white', border: 'none', padding: '15px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' }
-};
 export default Contacto;

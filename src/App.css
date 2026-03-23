@@ -1,20 +1,72 @@
-/* 1. Fondo Global: Lila sutil */
+/* 1. Fondo Global y Texto Base */
 body {
   background-color: #f3e5f5 !important; 
-  /* Un gris azulado muy oscuro, mucho más suave que el negro */
   color: #2f3640 !important; 
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3 {
   color: #4a148c !important; 
+  text-align: center;
 }
 
-p, span, label {
-  /* Gris suave para textos largos, reduce el esfuerzo de lectura */
-  color: #4b4b4b !important; 
+/* 2. Estilos para el Formulario e Inputs */
+form {
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: #ffffff; /* Blanco para contraste en el form */
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(106, 27, 154, 0.1);
 }
 
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #d1c4e9;
+  border-radius: 8px;
+  background-color: #f9f4ff;
+  color: #4b4b4b;
+  box-sizing: border-box; /* Para que el padding no agrande el input */
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid #9575cd;
+  background-color: #ffffff;
+}
+
+/* 3. Estilos para la Tabla de Inventario */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden; /* Para que las esquinas redondeadas funcionen */
+  box-shadow: 0 4px 15px rgba(106, 27, 154, 0.1);
+}
+
+th {
+  background-color: #9575cd;
+  color: white;
+  padding: 15px;
+  text-align: left;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f3e5f5;
+  color: #4b4b4b;
+}
+
+tr:hover {
+  background-color: #f3e5f5; /* Efecto visual al pasar el mouse por la fila */
+}
+
+/* 4. Botones (Manteniendo tu estilo original) */
 /* ESTILO DEL BOTÓN: Forzado para que sea visible siempre */
 button {
   background-color: #9575cd !important; 
@@ -40,8 +92,9 @@ button:hover {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2) !important;
 }
 
-/* 4. Las Cards */
+/* Estilo para las Cards que ya tenías */
 [style*="border"] {
   background-color: #f0cef2 !important;
   box-shadow: 0 4px 15px rgba(106, 27, 154, 0.1) !important;
+  border-radius: 12px;
 }

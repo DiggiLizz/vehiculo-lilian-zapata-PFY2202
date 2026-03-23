@@ -5,6 +5,8 @@ const Navbar = () => {
   return (
     <nav style={styles.nav}>
       <Link to="/" style={styles.link}>🏠 Inicio</Link>
+      <Link to="/nuevo" style={styles.link}>➕ Nuevo</Link>
+      <Link to="/inventario" style={styles.link}>📋 Inventario</Link>
       <Link to="/nosotros" style={styles.link}>👥 Nosotros</Link>
       <Link to="/contacto" style={styles.link}>📞 Contacto</Link>
     </nav>

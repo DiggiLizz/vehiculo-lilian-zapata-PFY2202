@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
 
-const Home = () => {
+const Home = ({ vehiculos }) => { // 1. Recibimos los vehículos de App.js
   const [autoSeleccionado, setAutoSeleccionado] = useState(null);
 
-  const autos = [
-    { id: 1, modelo: "DeLorean Cyber", precio: "$45.000.000", img: "/assets/imagenes/DeLoreanCyber.jpg" },
-    { id: 2, modelo: "Shelby GT500", precio: "$85.000.000", img: "/assets/imagenes/ShelbyGT500.webp" },
-    { id: 3, modelo: "Tesla Model S", precio: "$60.000.000", img: "/assets/imagenes/TeslaModelS.webp" }
+  // Combinamos tus autos fijos con los que agregues en el formulario
+  const autosPredefinidos = [
+    { id: 1, marca: "DeLorean", modelo: "Cyber", precio: "45000000", img: "/assets/imagenes/DeLoreanCyber.jpg", descripcion: "Disponible para entrega inmediata." },
+    { id: 2, marca: "Shelby", modelo: "GT500", precio: "85000000", img: "/assets/imagenes/ShelbyGT500.webp", descripcion: "Potencia pura en cada curva." },
+    { id: 3, marca: "Tesla", modelo: "Model S", precio: "60000000", img: "/assets/imagenes/TeslaModelS.webp", descripcion: "Tecnología eléctrica de vanguardia." }
   ];
 
-  return (
-    <div style={styles.mainContainer}>
-      {/* Título Centrado con Mayúscula Inicial */}
-      <h1 style={styles.title}>🏎️ Catálogo de Vehículos 🏎️</h1>
+  // Unimos ambos arrays para que se vea todo en el inicio
+  const todosLosAutos = [...autosPredefinidos, ...vehiculos];
 
-      {/* Grid de Autos Centrado y Responsivo */}
-      <div style={styles.grid}>
-        {autos.map(auto => (
-          <div key={auto.id} style={styles.card}>
+  return (
+    <div className="p-5 pb-24 flex flex-col items-center min-h-screen bg-purple-50">
+      
+      <h1 className="text-3xl font-extrabold text-purple-900 mb-10 text-center drop-shadow-sm">
+        🏎️ Catálogo de Vehículos Sekhmet 🏎️
+      </h1>
+
+      {/* Grid Responsivo con Tailwind */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+        {todosLosAutos.map((auto) => (
+          <div key={auto.id} className="bg-white p-5 rounded-2xl shadow-lg border border-purple-100 text-center transform hover:scale-105 transition duration-300">
             <img 
-              src={auto.img} 
+              src={auto.img || "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=400"} 
               alt={auto.modelo} 
-              style={styles.cardImg} 
+              className="w-full h-48 object-cover rounded-xl mb-4"
             />
-            <h2 style={{ color: '#6a1b9a' }}>{auto.modelo}</h2>
-            <p><strong>Precio:</strong> {auto.precio}</p>
+            <h2 className="text-xl font-bold text-purple-800 uppercase">{auto.marca} {auto.modelo}</h2>
+            <p className="text-gray-600 font-medium my-2">Precio: ${auto.precio}</p>
             
             <button 
               onClick={() => setAutoSeleccionado(auto)}
-              style={styles.button}
+              className="mt-4 bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors w-full"
             >
               Ver detalles
             </button>
@@ -36,82 +42,38 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Modal / Card Flotante */}
+      {/* Modal / Card Flotante (Lógica de Tailwind) */}
       {autoSeleccionado && (
-        <div style={styles.overlay} onClick={() => setAutoSeleccionado(null)}>
-          <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <button style={styles.closeBtn} onClick={() => setAutoSeleccionado(null)}>X</button>
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4"
+          onClick={() => setAutoSeleccionado(null)}
+        >
+          <div 
+            className="bg-white p-8 rounded-3xl max-w-sm w-full relative shadow-2xl animate-in fade-in zoom-in duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 bg-red-500 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold"
+              onClick={() => setAutoSeleccionado(null)}
+            >
+              X
+            </button>
             
-            <img src={autoSeleccionado.img} alt={autoSeleccionado.modelo} style={{ width: '100%', borderRadius: '10px' }} />
-            <h3>{autoSeleccionado.modelo}</h3>
-            <p style={{ fontSize: '1.2rem', color: '#2c3e50' }}><strong>Valor: {autoSeleccionado.precio}</strong></p>
-            <p>Este vehículo está disponible para entrega inmediata en nuestras sucursales de Automotora Sekhmet.</p>
+            <img 
+              src={autoSeleccionado.img || "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=400"} 
+              alt={autoSeleccionado.modelo} 
+              className="w-full rounded-2xl shadow-md mb-4" 
+            />
+            <h3 className="text-2xl font-bold text-purple-900 mb-2">{autoSeleccionado.marca} {autoSeleccionado.modelo}</h3>
+            <p className="text-xl font-black text-green-600 mb-4">Valor: ${autoSeleccionado.precio}</p>
+            <p className="text-gray-600 italic">
+              {autoSeleccionado.descripcion || "Este vehículo está disponible para entrega inmediata en nuestras sucursales de Automotora Sekhmet."}
+            </p>
           </div>
         </div>
       )}
     </div>
   );
-};
-
-// ESTILOS UNIFICADOS
-const styles = {
-  mainContainer: {
-    padding: '20px',
-    marginBottom: '80px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center', 
-    minHeight: '100vh'
-  },
-  title: {
-    textAlign: 'center',
-    color: '#6a1b9a', 
-    marginBottom: '40px',
-    fontSize: '2rem'
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: '30px',
-    width: '100%',
-    maxWidth: '1100px', 
-    justifyContent: 'center'
-  },
-  card: {
-    backgroundColor: 'white', 
-    padding: '20px',
-    borderRadius: '15px',
-    boxShadow: '0 4px 15px rgba(106, 27, 154, 0.1)',
-    textAlign: 'center',
-    border: '1px solid #e1bee7' 
-  },
-  cardImg: {
-    width: '100%',
-    height: '200px',
-    objectFit: 'cover',
-    borderRadius: '10px'
-  },
-  button: {
-    marginTop: '15px',
-    backgroundColor: '#9575cd',
-    padding: '12px 25px',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  },
-  overlay: {
-    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
-  },
-  modal: {
-    backgroundColor: 'white', padding: '25px', borderRadius: '15px',
-    width: '85%', maxWidth: '400px', textAlign: 'center', position: 'relative',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
-  },
-  closeBtn: {
-    position: 'absolute', top: '10px', right: '10px', border: 'none',
-    background: '#ff4d4d', color: 'white', borderRadius: '50%', cursor: 'pointer', width: '30px', height: '30px'
-  }
 };
 
 export default Home;
