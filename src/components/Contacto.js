@@ -84,7 +84,7 @@ const Contacto = () => {
         <div className="w-full max-w-lg text-center flex flex-col items-center">
           <div className="relative group">
             <img 
-              src="/assets/imagenes/yoContacto.png"
+              src={process.env.PUBLIC_URL + "/assets/imagenes/yoContacto.png"}
               alt="Lilian Zapata - Soporte Automotora Sekhmet" 
               className="rounded-3xl shadow-2xl border-4 border-white transition-transform duration-500 group-hover:scale-[1.02]"
             />

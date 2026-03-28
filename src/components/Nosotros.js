@@ -8,7 +8,7 @@ const Nosotros = () => {
       {/* imagen centrada tail */}
       <div className="my-8 flex flex-col items-center justify-center">
         <img 
-          src="/assets/imagenes/yoAutomotora.png" 
+          src={process.env.PUBLIC_URL + "/assets/imagenes/yoAutomotora.png"} 
           alt="Lilian Zapata" 
           className="w-48 h-48 object-cover rounded-full border-8 border-white shadow-2xl" 
         />
