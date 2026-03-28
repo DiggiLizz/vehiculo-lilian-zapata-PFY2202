@@ -17,9 +17,9 @@ function App() {
   const [vehiculos, setVehiculos] = useState(() => {
     const guardados = localStorage.getItem("sekhmet_vehiculos");
     return guardados ? JSON.parse(guardados) : [
-      { id: 1, marca: "DeLorean", modelo: "Cyber", precio: "45000000", año: "2026", descripcion: "Edición limitada.", img: "/assets/imagenes/DeLoreanCyber.jpg", estado: "disponible", modificadoPor: "Sistema" },
-      { id: 2, marca: "Shelby", modelo: "GT500", precio: "85000000", año: "2024", descripcion: "Alto rendimiento.", img: "/assets/imagenes/ShelbyGT500.webp", estado: "disponible", modificadoPor: "Sistema" },
-      { id: 3, marca: "Tesla", modelo: "Model S", precio: "60000000", año: "2023", descripcion: "Eléctrico alta gama.", img: "/assets/imagenes/TeslaModelS.webp", estado: "disponible", modificadoPor: "Sistema" }
+      { id: 1, marca: "DeLorean", modelo: "Cyber", precio: "45000000", año: 2026, descripcion: "Edición limitada.", img: "/assets/imagenes/DeLoreanCyber.jpg", estado: "disponible", modificadoPor: "Sistema" },
+      { id: 2, marca: "Shelby", modelo: "GT500", precio: "85000000", año: 2024, descripcion: "Alto rendimiento.", img: "/assets/imagenes/ShelbyGT500.webp", estado: "disponible", modificadoPor: "Sistema" },
+      { id: 3, marca: "Tesla", modelo: "Model S", precio: "60000000", año: 2023, descripcion: "Eléctrico alta gama.", img: "/assets/imagenes/TeslaModelS.webp", estado: "disponible", modificadoPor: "Sistema" }
     ];
   });
 
