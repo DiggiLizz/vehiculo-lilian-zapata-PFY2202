@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 
+// componente para el contacto y validacion
 const Contacto = () => {
+  // caputar la informacion que se ingresa por teclado
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
 
   const manejarEnvio = () => {
+    // validacion del formato real
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
+    // validacion del nombre
     if (!nombre.trim()) {
       alert("Por favor, ingresa tu nombre.");
       return;
     }
+    // alerta de error en formato
     if (!regexEmail.test(email)) {
       alert("⚠️ El formato del correo electrónico no es válido.");
       return;
     }
     
+    // mensaje de alerta que se envio el mensaje
     alert(`¡Gracias "${nombre}"! Tu mensaje fue enviado, pronto te contactaremos.`);
   };
 
@@ -25,10 +31,10 @@ const Contacto = () => {
         📧 Contáctanos
       </h1>
       
-      {/* CONTENEDOR PRINCIPAL: Flexbox responsivo con Tailwind */}
+      {/* contenedor principal con flexbox para que sea responsivo en moviles y pc */}
       <div className="flex flex-col lg:flex-row justify-center items-center gap-12 max-w-6xl mx-auto">
         
-        {/* COLUMNA IZQUIERDA: Formulario */}
+        {/* columna con la info en el formulario */}
         <div className="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl border border-purple-100">
           <form className="flex flex-col gap-5">
             <div>
@@ -42,6 +48,7 @@ const Contacto = () => {
               />
             </div>
 
+            {/* campo para el email con vinculacion al estado email */}
             <div>
               <label className="block text-sm font-semibold text-purple-700 mb-1 ml-1">Tu correo:</label>
               <input 
@@ -53,6 +60,7 @@ const Contacto = () => {
               />
             </div>
 
+            {/* mensaje por el auto de interes */}
             <div>
               <label className="block text-sm font-semibold text-purple-700 mb-1 ml-1">Mensaje:</label>
               <textarea 
@@ -61,6 +69,7 @@ const Contacto = () => {
               ></textarea>
             </div>
 
+            {/* boton para enviar el formulario */}
             <button 
               type="button" 
               onClick={manejarEnvio} 
@@ -71,7 +80,7 @@ const Contacto = () => {
           </form>
         </div>
 
-        {/* COLUMNA DERECHA: Foto profesional */}
+        {/* columna de la foto */}
         <div className="w-full max-w-lg text-center flex flex-col items-center">
           <div className="relative group">
             <img 

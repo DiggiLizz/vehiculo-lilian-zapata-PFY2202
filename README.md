@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+🏎️ Proyecto Automotora Sekhmet - Semana 3
+Este proyecto es una aplicación desarrollada con React y Tailwind CSS para la gestión de inventario y selección de vehículos. Implementa conceptos avanzados de React como el levantamiento de estado (Lifting State Up) y persistencia de datos.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🛠️ Guía de Comandos y Pasos Técnicos
+Paso 1: Instalación de Dependencias
+Lo primero es descargar las librerías necesarias para que el proyecto funcione en cualquier computador.
+ * npm install
+    - ¿Qué hace?: Lee el archivo package.json y descarga todas las librerías (React, Tailwind, React Router) en la carpeta node_modules.
 
-## Available Scripts
+Paso 2: Ejecución en Modo Desarrollo
+Para ver los cambios en tiempo real mientras programas.
+ * npm start
+    - ¿Qué hace?: Levanta un servidor local (normalmente en localhost:3000) para visualizar la app en el navegador.
 
-In the project directory, you can run:
+Paso 3: Instalación de React Router (Navegación)
+Si estás configurando el proyecto desde cero, este comando es vital.
+ * npm install react-router-dom
+    - ¿Qué hace?: Permite que la aplicación tenga múltiples páginas (Home, Inventario, Carrito) sin que la página se recargue por completo.
 
-### `npm start`
+📁 Estructura del Proyecto
+* src/components/Home.js: Catálogo principal con filtros.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* src/components/Inventario.js: Panel administrativo de gestión.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* src/components/Carrito.js: Pantalla de "Posible Compra" y confirmación.
 
-### `npm test`
+* src/components/Formulario.js: Ingreso de nuevos vehículos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* src/App.js: Cerebro de la aplicación y manejo de rutas.
 
-### `npm run build`
+🔍 Bitácora de Lógica y Flujo de Datos
+--------------------------------------
+El sistema opera bajo los siguientes pilares técnicos:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. El "Cerebro" Centralizado (App.js)
+En lugar de que cada página tenga su propia lista, todo nace en App.js.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Comando Conceptual: const [vehiculos, setVehiculos] = useState([...])
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Qué hace: Al centralizar los datos en el padre (Lifting State Up), garantizamos que si un vehículo cambia de estado en el Carrito, el Home y el Inventario se enteren al mismo tiempo.
 
-### `npm run eject`
+2. Filtro Multidimensional en Tiempo Real
+El catálogo no solo busca palabras, sino que cruza categorías técnicas.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Comando Conceptual: autos.filter(a => a.marca === filtro.marca && a.precio <= filtro.max)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Qué hace: Cruza 4 variables (Marca, Modelo, Año, Precio). Lo más importante: No modifica el arreglo original, lo que cumple con el criterio de "no perder datos originales" de la rúbrica.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Sistema de Exclusión Dinámica (Requerimiento Crítico)
+Esta es la regla de oro de la Semana 3: Un auto no puede estar en dos lugares a la vez.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Paso A (Compra): Al marcar "Comprar", el ID del auto entra al arreglo carrito.
 
-## Learn More
+Paso B (Filtro de Vista): El Home hace un chequeo: if (auto.id esta en carrito) { NO MOSTRAR }.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Paso C (Retorno): Al "Desmarcar" en el carrito, el ID sale del arreglo y el auto reaparece en el Home automáticamente sin recargar la página.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Blindaje de Datos (Persistencia Local)
+Para evitar que el trabajo se pierda al refrescar el navegador (F5).
 
-### Code Splitting
+Comando Conceptual: localStorage.setItem("datos", JSON.stringify(estado))
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Qué hace: Guarda una copia de seguridad en el navegador. Al iniciar (useEffect), la app pregunta: "¿Hay algo guardado?". Si sí, lo carga. Esto asegura la "Actualización dinámica del estado" que pide la pauta.

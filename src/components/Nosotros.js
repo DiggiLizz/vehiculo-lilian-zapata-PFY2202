@@ -5,7 +5,7 @@ const Nosotros = () => {
     <div className="p-10 text-center mb-20 min-h-screen bg-purple-50">
       <h1 className="text-4xl font-extrabold text-purple-900 mb-8">🏢 Nuestra Historia</h1>
       
-      {/* IMAGEN CENTRADA CON TAILWIND */}
+      {/* imagen centrada tail */}
       <div className="my-8 flex flex-col items-center justify-center">
         <img 
           src="/assets/imagenes/yoAutomotora.png" 

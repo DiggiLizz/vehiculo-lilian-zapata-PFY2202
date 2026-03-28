@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 
+// componnete para agregar autos nuevos al inventario
 const Formulario = ({ agregarVehiculo }) => {
+  // estado de configuacion de la infromacion
   const [nuevoAuto, setNuevoAuto] = useState({
     marca: '', modelo: '', precio: '', año: '', descripcion: ''
   });
 
+  // funcion donde se agrega lo que se escribe en teclado y se guarda
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNuevoAuto({ ...nuevoAuto, [name]: value });
   };
 
+  // funcion que funciona (XP) cuando se guarda la infromacion
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Agregamos un ID único usando el tiempo actual para evitar el error de las "keys"
+    // ID único 
     agregarVehiculo({ ...nuevoAuto, id: Date.now() }); 
+    // mensaje de alerta
     alert(`¡Vehículo ${nuevoAuto.marca} ${nuevoAuto.modelo} agregado con éxito!`);
     setNuevoAuto({ marca: '', modelo: '', precio: '', año: '', descripcion: '' });
   };
@@ -27,8 +32,7 @@ const Formulario = ({ agregarVehiculo }) => {
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         
-        {/* Usamos un pequeño componente interno para no repetir código, 
-            esto es muy eficiente (Pensamiento Reflexivo) */}
+        {/* mapeo de los autos */}
         {[
           { label: 'Marca', name: 'marca', type: 'text', ph: 'Ej: Tesla' },
           { label: 'Modelo', name: 'modelo', type: 'text', ph: 'Ej: Model S' },
@@ -49,6 +53,7 @@ const Formulario = ({ agregarVehiculo }) => {
           </div>
         ))}
 
+        {/* mensaje de la descipcion */}
         <div>
           <label className="text-sm font-semibold text-purple-700 ml-1">Descripción:</label>
           <textarea 
@@ -61,6 +66,7 @@ const Formulario = ({ agregarVehiculo }) => {
           />
         </div>
 
+        {/* botom que compueba el envio de la info */}
         <button 
           type="submit" 
           className="w-full bg-purple-600 hover:bg-purple-800 text-white font-bold py-4 px-6 rounded-2xl transition duration-300 shadow-lg mt-2 transform hover:-translate-y-1 active:scale-95"
