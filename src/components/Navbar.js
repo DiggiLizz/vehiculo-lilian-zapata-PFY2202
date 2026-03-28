@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav style={styles.nav}>
-      <Link to="/" style={styles.link}>🏠 Inicio</Link>
-      <Link to="/nuevo" style={styles.link}>➕ Nuevo</Link>
-      <Link to="/inventario" style={styles.link}>📋 Inventario</Link>
-      <Link to="/nosotros" style={styles.link}>👥 Nosotros</Link>
-      <Link to="/contacto" style={styles.link}>📞 Contacto</Link>
+    <nav className="fixed bottom-0 left-0 w-full bg-purple-900/90 backdrop-blur-sm flex justify-around p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] z-50">
+      <Link to="/" className="text-white font-bold hover:text-purple-300 transition-colors">🏠 Inicio</Link>
+      <Link to="/nuevo" className="text-white font-bold hover:text-purple-300 transition-colors">➕ Nuevo</Link>
+      <Link to="/inventario" className="text-white font-bold hover:text-purple-300 transition-colors">📋 Inventario</Link>
+      <Link to="/nosotros" className="text-white font-bold hover:text-purple-300 transition-colors">👥 Nosotros</Link>
+      <Link to="/contacto" className="text-white font-bold hover:text-purple-300 transition-colors">📞 Contacto</Link>
     </nav>
   );
 };

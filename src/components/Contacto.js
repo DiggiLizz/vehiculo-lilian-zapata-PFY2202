@@ -64,7 +64,7 @@ const Contacto = () => {
             <button 
               type="button" 
               onClick={manejarEnvio} 
-              className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 rounded-xl shadow-lg transform hover:-translate-y-1 transition-all active:scale-95"
+              className="w-full bg-purple-600 hover:bg-purple-800 text-white font-bold py-4 rounded-xl shadow-lg transform hover:-translate-y-1 transition-all active:scale-95"
             >
               Enviar Consulta
             </button>

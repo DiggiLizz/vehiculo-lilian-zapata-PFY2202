@@ -30,8 +30,8 @@ const Inventario = ({ vehiculos }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-purple-100">
-            {inventarioCompleto.map((auto) => (
-              <tr key={auto.id} className="hover:bg-purple-50 transition-colors duration-200">
+            {inventarioCompleto.map((auto, index) => (
+              <tr key={`inv-${auto.id}-${index}`} className="hover:bg-purple-50 transition-colors duration-200">
                 <td className="p-4 font-bold text-purple-800">{auto.marca}</td>
                 <td className="p-4 text-gray-700">{auto.modelo}</td>
                 <td className="p-4 text-center text-gray-600">{auto.año}</td>

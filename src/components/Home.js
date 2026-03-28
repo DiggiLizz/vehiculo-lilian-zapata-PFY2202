@@ -22,8 +22,8 @@ const Home = ({ vehiculos }) => { // 1. Recibimos los vehículos de App.js
 
       {/* Grid Responsivo con Tailwind */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
-        {todosLosAutos.map((auto) => (
-          <div key={auto.id} className="bg-white p-5 rounded-2xl shadow-lg border border-purple-100 text-center transform hover:scale-105 transition duration-300">
+        {todosLosAutos.map((auto, index) => (
+          <div key={`${auto.id}-${index}`} className="bg-white p-5 rounded-2xl shadow-lg border border-purple-100 text-center transform hover:scale-105 transition duration-300">
             <img 
               src={auto.img || "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=400"} 
               alt={auto.modelo} 
