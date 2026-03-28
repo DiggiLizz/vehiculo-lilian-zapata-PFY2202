@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vehiculo-lilian-zapata-PFY2202/static/css/main.96df8b77.css",
+    "main.js": "/vehiculo-lilian-zapata-PFY2202/static/js/main.294efd73.js",
+    "static/js/453.6a08894a.chunk.js": "/vehiculo-lilian-zapata-PFY2202/static/js/453.6a08894a.chunk.js",
+    "index.html": "/vehiculo-lilian-zapata-PFY2202/index.html",
+    "main.96df8b77.css.map": "/vehiculo-lilian-zapata-PFY2202/static/css/main.96df8b77.css.map",
+    "main.294efd73.js.map": "/vehiculo-lilian-zapata-PFY2202/static/js/main.294efd73.js.map",
+    "453.6a08894a.chunk.js.map": "/vehiculo-lilian-zapata-PFY2202/static/js/453.6a08894a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.96df8b77.css",
+    "static/js/main.294efd73.js"
+  ]
+}
