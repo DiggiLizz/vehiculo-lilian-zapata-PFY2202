@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'; 
 import './App.css';
-// cambiamos BrowserRouter por HashRouter para que github pages no de error 404
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
@@ -14,32 +13,30 @@ import Carrito from './components/Carrito';
 const IMG_DEFECTO = "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=400";
 
 function App() {
-  // carga inicial desde localstorage
+  // CAMBIO CLAVE: Usamos "sekhmet_final" para ignorar todo lo anterior y cargar los datos nuevos
   const [vehiculos, setVehiculos] = useState(() => {
-    const guardados = localStorage.getItem("sekhmet_vehiculos");
-    // nota: aqui ya eliminamos las comillas en los numeros para el filtro
+    const guardados = localStorage.getItem("sekhmet_final");
     return guardados ? JSON.parse(guardados) : [
-      { id: 1, marca: "DeLorean", modelo: "Cyber", precio: 45000000, año: 2026, descripcion: "Edición limitada.", img: "/assets/imagenes/DeLoreanCyber.jpg", estado: "disponible", modificadoPor: "Sistema" },
-      { id: 2, marca: "Shelby", modelo: "GT500", precio: 85000000, año: 2024, descripcion: "Alto rendimiento.", img: "/assets/imagenes/ShelbyGT500.webp", estado: "disponible", modificadoPor: "Sistema" },
-      { id: 3, marca: "Tesla", modelo: "Model S", precio: 60000000, año: 2023, descripcion: "Eléctrico alta gama.", img: "/assets/imagenes/TeslaModelS.webp", estado: "disponible", modificadoPor: "Sistema" }
+      { id: 1, marca: "DeLorean", modelo: "Cyber", precio: 45000000, año: 2026, descripcion: "Edición limitada.", img: process.env.PUBLIC_URL + "/assets/imagenes/DeLoreanCyber.jpg", estado: "disponible", modificadoPor: "Sistema" },
+      { id: 2, marca: "Shelby", modelo: "GT500", precio: 85000000, año: 2024, descripcion: "Alto rendimiento.", img: process.env.PUBLIC_URL + "/assets/imagenes/ShelbyGT500.webp", estado: "disponible", modificadoPor: "Sistema" },
+      { id: 3, marca: "Tesla", modelo: "Model S", precio: 60000000, año: 2023, descripcion: "Eléctrico alta gama.", img: process.env.PUBLIC_URL + "/assets/imagenes/TeslaModelS.webp", estado: "disponible", modificadoPor: "Sistema" }
     ];
   });
 
   const [carrito, setCarrito] = useState(() => {
-    const carritoGuardado = localStorage.getItem("sekhmet_carrito");
+    const carritoGuardado = localStorage.getItem("sekhmet_carrito_final");
     return carritoGuardado ? JSON.parse(carritoGuardado) : [];
   });
 
-  // persistencia automatica en localstorage
+  // Persistencia con la nueva clave
   useEffect(() => {
-    localStorage.setItem("sekhmet_vehiculos", JSON.stringify(vehiculos));
+    localStorage.setItem("sekhmet_final", JSON.stringify(vehiculos));
   }, [vehiculos]);
 
   useEffect(() => {
-    localStorage.setItem("sekhmet_carrito", JSON.stringify(carrito));
+    localStorage.setItem("sekhmet_carrito_final", JSON.stringify(carrito));
   }, [carrito]);
 
-  // funciones de gestion de inventario
   const agregarVehiculo = (nuevoAuto) => {
     const nombreOperador = prompt("Ingrese su nombre para registrar el ingreso:");
     if (!nombreOperador) return;
@@ -68,7 +65,6 @@ function App() {
   };
 
   return (
-    /* el componente Router aqui actua como HashRouter */
     <Router>
       <div className="App">
         <Routes>
@@ -88,7 +84,6 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
         </Routes>
-
         <Navbar carrito={carrito} />
       </div>
     </Router>
