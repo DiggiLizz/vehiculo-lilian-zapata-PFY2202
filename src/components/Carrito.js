@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Agrega esto al principio
 
 // recibe imtem el carrito y funciones para modificar el esatdo
 const Carrito = ({ items, setCarrito, onFinalizar }) => {
@@ -80,9 +81,12 @@ const Carrito = ({ items, setCarrito, onFinalizar }) => {
           <div className="p-20 text-center">
             <div className="text-7xl mb-6">🏜️</div>
             <p className="text-2xl text-gray-400 mb-8 font-semibold italic">Tu lista de compra está vacía</p>
-            <a href="/" className="inline-block bg-purple-600 text-white font-bold py-4 px-10 rounded-2xl hover:bg-purple-800 transition-all shadow-xl hover:-translate-y-1">
+            <Link 
+              to="/" 
+              className="inline-block bg-purple-600 text-white font-bold py-4 px-10 rounded-2xl hover:bg-purple-800 transition-all shadow-xl hover:-translate-y-1"
+            >
               Ir al Catálogo
-            </a>
+            </Link>
           </div>
         )}
       </div>
